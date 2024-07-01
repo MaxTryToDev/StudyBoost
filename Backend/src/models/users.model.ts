@@ -33,4 +33,4 @@ const schema = new mongoose.Schema({
   },
 });
 
-export default new mongoose.Model("documents", schema);
+export default new mongoose.Model("users", schema);
