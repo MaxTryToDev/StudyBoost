@@ -25,5 +25,10 @@ app.get("/test", (req: Request, res: Response) => {
 });
 
 app.use("/v1/", () => {});
+app.use("/v1/flachcards", () => {});
+app.use("/v1/documents", () => {});
+app.use("/v1/sessions", () => {});
+app.use("/v1/courses", () => {});
+app.use("/v1/users", () => {});
 
 export default app;
