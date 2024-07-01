@@ -14,10 +14,12 @@ const schema = new mongoose.Schema({
     type: String, // PDF
   },
 
-  usersId: {
-    type: [String],
-    require: true,
-  },
+  usersId: [
+    {
+      type: [String],
+      require: true,
+    },
+  ],
 
   createAt: {
     type: Date,
