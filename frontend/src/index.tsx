@@ -1,15 +1,57 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from 'react-router-dom';
+import { Home } from './pages/home.page';
+import { Courses } from './pages/courses';
+import { Flashcards } from './pages/flachcards';
+import { Parameters } from './pages/parameters';
+import { Login } from './pages/login';
+import { Logout } from './pages/logout';
+import { Pomodoro } from './pages/pomodoro';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />,
+  },
+  {
+    path: '/courses',
+    element: <Courses />,
+  },
+  {
+    path: '/pomodoro',
+    element: <Pomodoro />,
+  },
+  {
+    path: '/flachcards',
+    element: <Flashcards />,
+  },
+  {
+    path: '/parameters',
+    element: <Parameters />,
+  },
+  {
+    path: '/login',
+    element: <Login />,
+  },
+  {
+    path: '/logout',
+    element: <Logout />,
+  },
+]);
+
 root.render(
   <React.StrictMode>
-    <App />
+      <RouterProvider router={router} />
   </React.StrictMode>
 );
 

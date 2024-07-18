@@ -1,0 +1,17 @@
+meta {
+  name: Update a group
+  type: http
+  seq: 4
+}
+
+patch {
+  url: http://localhost:3000/v1/flashcards/group/669974501c95c57d7ae7a96c
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "flashcards": ["66997329497825a29b645a3b"]
+  }
+}
