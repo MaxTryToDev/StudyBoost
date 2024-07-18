@@ -1,0 +1,17 @@
+meta {
+  name: Update flashcard
+  type: http
+  seq: 3
+}
+
+patch {
+  url: http://localhost:3000/v1/flashcards/66997329497825a29b645a3b
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "group": ["669974501c95c57d7ae7a96c"]
+  }
+}

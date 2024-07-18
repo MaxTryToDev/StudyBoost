@@ -1,0 +1,20 @@
+meta {
+  name: Create Flashcard
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/v1/flashcards
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "math",
+    "question": "Le théoreme de Gauss",
+    "answer": "sldfh qsldjhfq sdfsdf",
+    "group": ["669972df497825a29b645a36"]
+  }
+}

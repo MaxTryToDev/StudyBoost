@@ -1,6 +1,12 @@
-import mongoose from "mongoose";
+import mongoose, {Schema} from "mongoose";
 
-const schema = new mongoose.Schema({
+
+const flashcardSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+
   question: {
     type: String,
   },
@@ -24,4 +30,19 @@ const schema = new mongoose.Schema({
   },
 });
 
-export default new mongoose.Model("flashcards", schema);
+const groupSchema = new mongoose.Schema({
+  name: {
+    type: String,
+  },
+  flashcards: [{
+    type: Schema.Types.ObjectId, ref: "Flashcard"
+  }]
+})
+
+const FlashcardsModel =  mongoose.model("Flashcard", flashcardSchema);
+const FlashcardsGroupModel =  mongoose.model("FlashcardGroup", groupSchema);
+
+export {
+ FlashcardsModel,
+  FlashcardsGroupModel
+};
