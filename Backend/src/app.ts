@@ -1,7 +1,10 @@
 import express, {Response, Request, NextFunction} from "express";
 import cors from "cors";
 import morgan from "morgan";
+
 import flashcardsRoute from "./routes/falshcardsRoute";
+import foldersRoute from "./routes/foldersRoute";
+
 import globalErrorHandler from "./controllers/errorController";
 import AppError from "./utils/appError";
 const app = express();
@@ -29,7 +32,7 @@ app.get("/test", (req: Request, res: Response) => {
 app.use("/v1/flashcards", flashcardsRoute);
 app.use("/v1/documents", () => {});
 app.use("/v1/sessions", () => {});
-app.use("/v1/courses", () => {});
+app.use("/v1/folders", foldersRoute);
 app.use("/v1/users", () => {});
 
 //Handle Error
