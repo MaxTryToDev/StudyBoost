@@ -1,4 +1,3 @@
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home } from "./pages/home.page";
 import { Courses } from "./pages/courses";
@@ -10,48 +9,45 @@ import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 import Layout from "./pages/layout";
 
-
-
 const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <Layout />,
 		children: [
 			{
-				path: "/",
+				path: "",
 				element: <Home />,
 			},
 			{
-				path: "/courses",
+				path: "courses",
 				element: <Courses />,
 			},
 			{
-				path: "/pomodoro",
+				path: "pomodoro",
 				element: <Pomodoro />,
 			},
 			{
-				path: "/flachcards",
+				path: "flachcards",
 				element: <Flashcards />,
 			},
 			{
-				path: "/parameters",
+				path: "parameters",
 				element: <Parameters />,
 			},
 			{
-				path: "/logout",
+				path: "logout",
 				element: <Logout />,
 			},
 			{
-				path: "/login",
+				path: "login",
 				element: <Login />,
 			},
 			{
-				path: "/register",
+				path: "register",
 				element: <Register />,
 			},
 		],
 	},
 ]);
-
 
 export default router

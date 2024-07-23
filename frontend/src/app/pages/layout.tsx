@@ -1,4 +1,3 @@
-
 import { AuthContext } from "../contexts/auth-context";
 import { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
@@ -19,5 +18,3 @@ export default function Layout({ children }: { children?: React.ReactNode }) {
 function Container({ children }: { children?: React.ReactNode }) {
 	return <div className=" p-12 h-full w-full overflow-scroll">{children}</div>
 }
-
-
