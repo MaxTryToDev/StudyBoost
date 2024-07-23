@@ -8,11 +8,15 @@ import {
 } from 'react-router-dom';
 import { Home } from './pages/home.page';
 import { Courses } from './pages/courses';
+import { Pomodoro } from './pages/pomodoro';
 import { Flashcards } from './pages/flachcards';
 import { Parameters } from './pages/parameters';
-import { Login } from './pages/login';
 import { Logout } from './pages/logout';
-import { Pomodoro } from './pages/pomodoro';
+import { Login } from './pages/login';
+import { Register } from './pages/register';
+import Sidebar from './ui/Button/sidebar';
+
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -21,7 +25,11 @@ const root = ReactDOM.createRoot(
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: (
+      <Sidebar>
+        <Home />
+      </Sidebar>
+    ),
   },
   {
     path: '/courses',
@@ -40,12 +48,16 @@ const router = createBrowserRouter([
     element: <Parameters />,
   },
   {
+    path: '/logout',
+    element: <Logout />,
+  },
+  {
     path: '/login',
     element: <Login />,
   },
   {
-    path: '/logout',
-    element: <Logout />,
+    path: '/register',
+    element: <Register />,
   },
 ]);
 
