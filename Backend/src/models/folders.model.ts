@@ -34,4 +34,4 @@ schema.pre('save', function(next) {
   next();
 });
 
-export default new mongoose.Model("Folder", schema);
+export default mongoose.model("Folder", schema);
