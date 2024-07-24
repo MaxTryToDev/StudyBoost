@@ -7,7 +7,7 @@ export function Sidebar() {
         <img className="mb-8" src="/logo.svg"></img>
         <Link className="text-lg font-medium text-gray-800 hover:text-white hover:bg-blue-600 rounded-md p-2 mb-2" to="/courses">Mes cours</Link>
         <Link className="text-lg font-medium text-gray-800 hover:text-white hover:bg-blue-600 rounded-md p-2 mb-2" to="/pomodoro">Pomodoro</Link>
-        <Link className="text-lg font-medium text-gray-800 hover:text-white hover:bg-blue-600 rounded-md p-2" to="/flachcards">Flachcards</Link>
+        <Link className="text-lg font-medium text-gray-800 hover:text-white hover:bg-blue-600 rounded-md p-2" to="/flashcards">Flachcards</Link>
         <div className="flex-1"></div>
         <Link className="text-lg font-medium text-gray-800 hover:text-white hover:bg-blue-600 rounded-md p-2 mb-2" to="/parameters">Paramètres</Link>
         <Link className="text-lg font-medium text-gray-800 hover:text-white hover:bg-blue-600 rounded-md p-2" to="/logout">Se déconnecter</Link>

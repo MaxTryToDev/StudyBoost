@@ -8,7 +8,10 @@ import * as Dialog from "@radix-ui/react-dialog";
 import {Stack} from "../../ui/layouts/Stack/Stack";
 import {DialogOverlay} from "@radix-ui/react-dialog";
 import React from "react";
-import classNames from "classnames";
+import { FormBlock } from "src/ui/FormBlock";
+import { Label } from "src/ui/Label";
+import { Input } from "src/ui/Input";
+import { Textarea } from "src/ui/Textarea";
 
 export function Flashcards() {
   const [flashcard, setFlashcard] = React.useState({
@@ -173,30 +176,4 @@ export function Flashcards() {
 
     </ul>
   </section>;
-}
-
-
-export function FormBlock({children}: {children: React.ReactNode}) {
-  return <div className={"flex flex-col space-y-2"}>{children}</div>
-}
-
-
-interface LabelProps extends React.ComponentProps<"label"> {}
-
-export function Label(props : LabelProps) {
-  const {className, children, ...rest} = props;
-
-  return <label className={classNames("text-sm text-gray-700", className)} {...rest}>{children}</label>
-}
-
-interface InputProps extends React.ComponentProps<"input"> {}
-export function Input(props:InputProps) {
-  const {className, ...rest} = props
-  return <input className={classNames("w-full px-4 py-2 rounded-lg bg-gray-100 text-sm")} {...rest}/>
-}
-
-interface TextareaProps extends React.ComponentProps<"textarea"> {}
-export function Textarea(props:TextareaProps) {
-  const {className, ...rest} = props
-  return <textarea className={classNames("w-full px-4 py-2 rounded-lg bg-gray-100 text-sm", className)} {...rest}/>
 }

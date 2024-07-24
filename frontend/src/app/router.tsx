@@ -27,7 +27,7 @@ const router = createBrowserRouter([
 				element: <Pomodoro />,
 			},
 			{
-				path: "flachcards",
+				path: "flashcards",
 				element: <Flashcards />,
 			},
 			{
