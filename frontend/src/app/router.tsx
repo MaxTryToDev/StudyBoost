@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home } from "./pages/home.page";
 import { Courses } from "./pages/courses";
 import { Pomodoro } from "./pages/pomodoro";
 import { Flashcards } from "./pages/flachcards";
@@ -14,10 +13,6 @@ const router = createBrowserRouter([
 		path: "/",
 		element: <Layout />,
 		children: [
-			{
-				path: "",
-				element: <Home />,
-			},
 			{
 				path: "courses",
 				element: <Courses />,
@@ -34,19 +29,19 @@ const router = createBrowserRouter([
 				path: "parameters",
 				element: <Parameters />,
 			},
-			{
-				path: "logout",
-				element: <Logout />,
-			},
-			{
-				path: "login",
-				element: <Login />,
-			},
-			{
-				path: "register",
-				element: <Register />,
-			},
 		],
+	},
+	{
+		path: "logout",
+		element: <Logout />,
+	},
+	{
+		path: "login",
+		element: <Login />,
+	},
+	{
+		path: "register",
+		element: <Register />,
 	},
 ]);
 
