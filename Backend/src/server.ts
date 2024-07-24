@@ -9,5 +9,5 @@ dbConnection();
 
 //Démarer l'application sur un port
 app.listen(port, "127.0.0.1", () => {
-  console.log(`Le serveur à démarrer à l'adresse http://localhost:${port}`);
+  console.log(`Le serveur est démarré à l'adresse http://localhost:${port}`);
 });

@@ -31,21 +31,22 @@ export function Register() {
     }
 
     return(
-        <div>  
-            <h3>Inscription</h3>
+        <div className='flex flex-col'>  
+            <h1 className="text-2xl font-semibold pb-2" p->Inscription</h1>
+            <div className="pb-6">Bienvenue sur StydyBoost, inscrivez-vous pour booster vos révisions dès maintenant.</div>
             <form onSubmit={handleSubmit(registerUser)}>
-                <div>
+                <div className="pb-4">
                     <label htmlFor="email">E-mail : </label>
-                    <input {...register('email')} type="email" />
+                    <input className='border text-black' {...register('email')} type="email" placeholder='Email' />
                     {errors.email?.message && <p>{errors.email?.message}</p>}
                 </div>
-                <div>
+                <div className="pb-4">
                     <label htmlFor="pass">Mot de passe : </label>
-                    <input {...register('password')} type="password" />
+                    <input className='border text-black' {...register('password')} type="password" placeholder='Mot de passe' />
                     {errors.password?.message && <p>{errors.password?.message}</p>}
                 </div>
                 <div>
-                    <button type="submit">Inscription</button>
+                    <button className="border bg-blue-600 rounded-md w-[20rem]" type="submit">Je m'inscrit</button>
                 </div>
             </form>
         </div>

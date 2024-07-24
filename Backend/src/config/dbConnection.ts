@@ -8,7 +8,7 @@ export default () => {
     );
 
     mongoose.connect(db || "");
-    console.log("Connexion établi avec la base de donnée");
+    console.log("Connexion établie avec la base de donnée");
   } catch (e) {
     console.error(e);
   }
