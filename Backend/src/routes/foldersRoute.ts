@@ -7,7 +7,7 @@ router.route('/')
   .post(FoldersController.createFolder)
 
 
-router.route('/:slug')
+router.route('/:id')
   .get(FoldersController.getFolder)
   .delete(FoldersController.deleteFolder)
   .patch(FoldersController.updateFolder)

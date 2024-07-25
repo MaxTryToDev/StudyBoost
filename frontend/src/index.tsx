@@ -4,6 +4,8 @@ import { RouterProvider } from 'react-router-dom';
 import router from './app/router';
 import ReactDOM from "react-dom/client";
 import reportWebVitals from 'src/reportWebVitals';
+import {AppContextProvider} from "./app/contexts/AppContext";
+import {Toast} from "./ui/Toast/Toast"
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement
@@ -16,7 +18,10 @@ function App() {
 
 root.render(
 	<React.StrictMode>
-		<RouterProvider router={router} />
+		<AppContextProvider>
+			<RouterProvider router={router} />
+			<Toast/>
+		</AppContextProvider>
 	</React.StrictMode>
 );
 

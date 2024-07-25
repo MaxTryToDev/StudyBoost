@@ -1,24 +1,32 @@
-import ContentHeader from "../../ui/ContentHeader";
+import ContentHeader from "../../../ui/ContentHeader";
 import {Folder, PlusIcon, XIcon} from "lucide-react";
-import Button from "../../ui/Button";
-import {FolderIllustration} from "../../ui/illustrations/FolderIllustration";
+import Button from "../../../ui/Button";
+import {FolderIllustration} from "../../../ui/illustrations/FolderIllustration";
 import {Link} from "react-router-dom";
-import FolderCard from "../../ui/FolderCard";
+import FolderCard from "../../../ui/FolderCard";
 import * as Dialog from "@radix-ui/react-dialog";
-import {Stack} from "../../ui/layouts/Stack/Stack";
+import {Stack} from "../../../ui/layouts/Stack/Stack";
 import {DialogOverlay} from "@radix-ui/react-dialog";
 import React from "react";
 import { FormBlock } from "src/ui/FormBlock";
 import { Label } from "src/ui/Label";
 import { Input } from "src/ui/Input";
 import { Textarea } from "src/ui/Textarea";
+import {AppContext} from "src/app/contexts/AppContext";
 
 export function Flashcards() {
+  const {flashCardGroup: flashcardGroupContext} = React.useContext(AppContext)
   const [flashcard, setFlashcard] = React.useState({
     name: "",
     question: "",
     answer: ""
   })
+
+  const [group, setGroup] = React.useState<FlashcardGroup>({
+    name: ""
+  });
+
+
 
   return <section className={"space-y-6"}>
     <ContentHeader title={"Flashcards"}>
@@ -26,7 +34,7 @@ export function Flashcards() {
         {/*Créer un group*/}
         <Dialog.Root>
           <Dialog.Trigger asChild>
-            <Button variant={"secondary"}>Créer un groupe</Button>
+            <Button> <PlusIcon size={18}/> Créer un dossier</Button>
           </Dialog.Trigger>
 
           <Dialog.Portal>
@@ -49,6 +57,7 @@ export function Flashcards() {
                   <Input
                     type={"text"}
                     placeholder={"Algorithmique"}
+                    onChange={(e) => setGroup({name: e.currentTarget.value})}
                   />
                 </FormBlock>
               </div>
@@ -60,7 +69,7 @@ export function Flashcards() {
                     type={"button"}
                     onClick={() => {
                     }}
-                    className={"p-4 text-sm flex items-center justify-center w-full h-14 border-solid border-r-[.25px] border-gray-200"}
+                    className={"p-4 text-sm flex items-center font-medium justify-center w-full h-14 border-solid border-r-[.25px] border-gray-200"}
                   >Annuler
                   </button>
                 </Dialog.Close>
@@ -68,7 +77,8 @@ export function Flashcards() {
                 <Dialog.Close asChild>
                   <button
                     type={"button"}
-                    className={"h-full w-full p-4 text-sm flex items-center text-blue-600 justify-center w-full h-12 border-solid border-l-[.25px] border-gray-200"}
+                    onClick={() => flashcardGroupContext.create(group)}
+                    className={"p-4 text-sm flex items-center font-medium text-blue-700 justify-center w-full h-14 border-solid border-l-[.25px] border-gray-200"}
                   >Céer
                   </button>
                 </Dialog.Close>
@@ -81,7 +91,7 @@ export function Flashcards() {
         </Dialog.Root>
 
         {/*Créer une flashcard*/}
-        <Dialog.Root>
+        {/*<Dialog.Root>
           <Dialog.Trigger asChild>
             <Button><PlusIcon size={18}/> Ajouter</Button>
           </Dialog.Trigger>
@@ -150,28 +160,18 @@ export function Flashcards() {
             </Dialog.Content>
           </Dialog.Portal>
 
-        </Dialog.Root>
+        </Dialog.Root>*/}
       </div>
     </ContentHeader>
 
     <ul className={"grid grid-cols-6 gap-4"}>
-      <li className={""}>
-        <Link to={""}>
-          <FolderCard data={{name: "linux"}}/>
-        </Link>
-      </li>
-
-      <li className={""}>
-        <Link to={""}>
-          <FolderCard data={{name: "linux"}}/>
-        </Link>
-      </li>
-
-      <li className={""}>
-        <Link to={""}>
-          <FolderCard data={{name: "linux"}}/>
-        </Link>
-      </li>
+      {flashcardGroupContext.all.length !==0 && flashcardGroupContext.all.map((group, index) => {
+        return <li className={""} key={index}>
+          <Link to={`group/${group._id}`}>
+            <FolderCard data={group}/>
+          </Link>
+        </li>
+      })}
 
 
     </ul>

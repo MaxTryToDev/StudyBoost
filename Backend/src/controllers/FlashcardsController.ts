@@ -14,14 +14,26 @@ export const getAllFlashcard = catchAsync(async (req: Request, res: Response) =>
 
   const flashcards = await results.query
 
-  console.log("qlsdkfhqslfhl")
-
 
   res.status(200).json({
     status: "success",
     record: flashcards.length,
     data: {
       flashcards
+    }
+  })
+})
+
+
+export const getFlashcard = catchAsync(async (req: Request, res: Response) => {
+  const {id} = req.params
+
+
+  const results = await FlashcardsModel.findById(id)
+  res.status(200).json({
+    status: "success",
+    data: {
+      flashcard: results
     }
   })
 })
@@ -66,8 +78,9 @@ export const deleteFlashcard = catchAsync(async (req: Request, res: Response) =>
 
 //Group
 export const getAllGroup = catchAsync(async (req: Request, res: Response) => {
-
-  const results = new APIFeatures(FlashcardsGroupModel.find().populate("flashcards"), req.query as { [key: string]: string })
+  const results = new APIFeatures(FlashcardsGroupModel.find().populate("flashcards"), req.query as {
+    [key: string]: string
+  })
     .filter()
     .sort()
     .limitFields()
@@ -75,6 +88,7 @@ export const getAllGroup = catchAsync(async (req: Request, res: Response) => {
 
 
   const groups = await results.query
+
 
   res.status(200).json({
     status: "success",
@@ -88,7 +102,7 @@ export const getAllGroup = catchAsync(async (req: Request, res: Response) => {
 export const getGroup = catchAsync(async (req: Request, res: Response) => {
   const {id} = req.params;
 
-  const group = await FlashcardsGroupModel.findById(id);
+  const group = await FlashcardsGroupModel.findById(id).populate("flashcards");
 
   res.status(200).json({
     status: "success",
@@ -117,7 +131,8 @@ export const updateGroup = catchAsync(async (req: Request, res: Response) => {
   const data = req.body;
   const {id} = req.params;
 
-  const group = await FlashcardsGroupModel.findByIdAndUpdate(id, data, {new: true});
+  console.log(data)
+  const group = await FlashcardsGroupModel.findByIdAndUpdate(id, data, {new: true}).populate('flashcards');
 
   res.status(200).json({
     status: "success",

@@ -35,7 +35,8 @@ const groupSchema = new mongoose.Schema({
     type: String,
   },
   flashcards: [{
-    type: Schema.Types.ObjectId, ref: "Flashcard"
+    type: Schema.Types.ObjectId,
+    ref: "Flashcard"
   }]
 })
 

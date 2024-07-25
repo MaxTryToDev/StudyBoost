@@ -4,7 +4,7 @@ import APIFeatures from "../utils/apiFeatures";
 import FoldersModel from "../models/folders.model";
 
 export const getAllFolders = catchAsync(async (req: Request, res: Response ) => {
-  const results = new APIFeatures(FoldersModel.find(), req.query as any);
+  const results = new APIFeatures(FoldersModel.find().populate("folders", "documents"), req.query as any);
   const folders = await results.query;
 
   res.status(200).json({
@@ -32,9 +32,9 @@ export const createFolder = catchAsync(async (req: Request, res: Response ) => {
 })
 
 export const getFolder = catchAsync(async (req: Request, res: Response ) => {
-  const {slug} = req.params;
+  const {id} = req.params;
 
-  const folder = await FoldersModel.findOne({slug: slug}, {new: true});
+  const folder = await FoldersModel.findById(id);
 
   res.status(200).json({
     status: 'success',
@@ -47,9 +47,9 @@ export const getFolder = catchAsync(async (req: Request, res: Response ) => {
 
 export const updateFolder = catchAsync(async (req: Request, res: Response ) => {
   const data = req.body;
-  const {slug} = req.params;
+  const {id} = req.params;
 
-  const folder = await FoldersModel.findOneAndUpdate({slug: slug}, data, {new: true});
+  const folder = await FoldersModel.findOneAndUpdate({id: id}, data, {new: true});
 
   res.status(200).json({
     status: 'success',
@@ -61,9 +61,9 @@ export const updateFolder = catchAsync(async (req: Request, res: Response ) => {
 })
 
 export const deleteFolder = catchAsync(async (req: Request, res: Response ) => {
-  const {slug} = req.params;
+  const {id} = req.params;
 
-   await FoldersModel.findOneAndDelete({slug: slug});
+   await FoldersModel.findOneAndDelete({id: id});
 
   res.status(200).json({
     status: 'success',

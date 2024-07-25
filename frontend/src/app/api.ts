@@ -1,10 +1,8 @@
-import * as process from "node:process";
-
-interface ServerResponse<T> {
+interface ServerResponse {
   status: "success" | "error"
   message?: string
   record?: number
-  data?: T
+  data?: any
   error: any
 }
 
@@ -16,7 +14,9 @@ export const get = async (url: string) => {
   const newUrl = getUrl(url);
 
   try {
-    const response = await fetch(newUrl, {method: "GET"})
+    const response = await fetch(newUrl, {
+      method: "GET",
+    })
     return await response.json();
 
   } catch (err) {
@@ -27,7 +27,11 @@ export const get = async (url: string) => {
 export const post = async <T>(url: string, data: T) => {
   const newUrl = getUrl(url);
   try {
-    const response = await fetch(newUrl, {method: "POST", body: JSON.stringify(data)})
+    const response = await fetch(newUrl, {
+      method: "POST", body: JSON.stringify(data), headers: {
+        "Content-Type": "application/json"
+      }
+    })
     return await response.json();
 
   } catch (err) {
@@ -36,11 +40,15 @@ export const post = async <T>(url: string, data: T) => {
 };
 
 
-export const patch = async <T>(url: string, data: T): Promise<ServerResponse<T>> => {
+export const patch = async (url: string, data: any): Promise<ServerResponse> => {
   const newUrl = getUrl(url);
 
   try {
-    const response = await fetch(newUrl, {method: "PATCH", body: JSON.stringify(data)})
+    const response = await fetch(newUrl, {
+      method: "PATCH", body: JSON.stringify(data), headers: {
+        "Content-Type": "application/json"
+      }
+    })
     const res = await response.json();
     return res
 
