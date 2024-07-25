@@ -12,20 +12,13 @@ const schema = new mongoose.Schema({
     require: true,
   },
 
-  documents: [
-    {
-      id: {
-        type: String,
-        require: true,
-        unique: true,
-      },
-
-      permissions: {
-        enum: ["read", "write"],
-        require: true,
-      },
-    },
-  ],
+  // documents: [
+  //   {
+  //     permissions: {
+  //       enum: ["read", "write"],
+  //     },
+  //   },
+  // ],
 
   createAt: {
     type: Date,
@@ -33,4 +26,4 @@ const schema = new mongoose.Schema({
   },
 });
 
-export default new mongoose.Model("users", schema);
+export default mongoose.model("user", schema);

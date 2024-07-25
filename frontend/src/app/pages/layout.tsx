@@ -1,10 +1,18 @@
 import { AuthContext } from "../contexts/auth-context";
-import { useContext } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Sidebar } from "src/ui/Sidebar";
+import { Navigate } from "react-router-dom";
 
 export default function Layout({ children }: { children?: React.ReactNode }) {
-	//const { auth, setAuthData } = useContext(AuthContext);
+	const { auth, setAuthData } = useContext(AuthContext);
+	const navigate = useNavigate();
+
+	useEffect(() => { 	
+        if (!auth?.data?.email) {
+            navigate("/login");
+        }
+    }, [auth, navigate]);
 
 	return <div className="h-full w-full flex flex-row">
 		<Sidebar/>

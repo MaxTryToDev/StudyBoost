@@ -4,6 +4,7 @@ import morgan from "morgan";
 
 import flashcardsRoute from "./routes/falshcardsRoute";
 import foldersRoute from "./routes/foldersRoute";
+import usersRoute from "./routes/usersRoute";
 
 import globalErrorHandler from "./controllers/errorController";
 import AppError from "./utils/appError";
@@ -33,7 +34,7 @@ app.use("/v1/flashcards", flashcardsRoute);
 app.use("/v1/documents", () => {});
 app.use("/v1/sessions", () => {});
 app.use("/v1/folders", foldersRoute);
-app.use("/v1/users", () => {});
+app.use("/v1/users", usersRoute);
 
 //Handle Error
 app.all('*', (req:Request, res:Response, next: NextFunction) => {
