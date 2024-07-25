@@ -5,7 +5,11 @@ meta {
 }
 
 post {
-  url: 
-  body: none
+  url: http://localhost:3000/v1/documents
+  body: multipartForm
   auth: none
+}
+
+body:multipart-form {
+  doc: @file(/Users/roger/Downloads/Révision - Examen 22-23.pdf)
 }

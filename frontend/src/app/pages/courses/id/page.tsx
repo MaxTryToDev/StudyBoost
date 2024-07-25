@@ -13,6 +13,8 @@ import {AppContext} from "src/app/contexts/AppContext";
 import {Stack} from "src/ui/layouts/Stack/Stack";
 import * as http from "../../../api";
 import {BackButton} from "src/ui/BackButton";
+import {FolderIllustration} from "src/ui/illustrations/FolderIllustration";
+import {PdfIllustration} from "src/ui/illustrations/PdfIllustration";
 
 export function Course() {
   const data = useLoaderData() as Course;
@@ -45,6 +47,7 @@ export function Course() {
       const doc = response.data.doc;
 
       const r = await http.patch(`v1/folders/${id}`, {documents:  [...data.documents as any, doc._id]})
+      setDocuments(r.data.folder.documents);
       console.log(r)
     } catch (error:any) {
       setUploadStatus(`Erreur lors du téléchargement : ${error.response?.data || error.message}`);
@@ -204,14 +207,23 @@ export function Course() {
     </ContentHeader>
 
     <ul className={"grid grid-cols-6 gap-4"}>
-      {documents?.length !== 0 && documents?.map((course, index) => {
+      {documents?.length !== 0 && documents?.map((doc, index) => {
         return <li className={""} key={index}>
-          <Link to={`course/${course._id}`}>
-            <FolderCard data={{name: course.title}}/>
+          <Link to={`${process.env.REACT_APP_SERVER_URL}/${doc.path}`}>
+            <PdfCard data={{name: doc.name}}/>
           </Link>
         </li>
       })}
 
     </ul>
   </section>;
+}
+
+export default function PdfCard({data}: { data: { name: string } }) {
+  return (
+    <div className={"group flex flex-col items-center justify-center space-y-2 p-4 rounded-xl hover:bg-gray-100"}>
+      <PdfIllustration size={80}/>
+      <span className={"group-hover:underline text-sm capitalize text-gray-800"}>{data.name}</span>
+    </div>
+  )
 }

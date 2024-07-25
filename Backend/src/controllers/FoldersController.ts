@@ -34,7 +34,7 @@ export const createFolder = catchAsync(async (req: Request, res: Response ) => {
 export const getFolder = catchAsync(async (req: Request, res: Response ) => {
   const {id} = req.params;
 
-  const folder = await FoldersModel.findById(id);
+  const folder = await FoldersModel.findById(id).populate("documents");
 
   res.status(200).json({
     status: 'success',
@@ -49,7 +49,7 @@ export const updateFolder = catchAsync(async (req: Request, res: Response ) => {
   const data = req.body;
   const {id} = req.params;
 
-  const folder = await FoldersModel.findOneAndUpdate({id: id}, data, {new: true}).populate("Document");
+  const folder = await FoldersModel.findByIdAndUpdate(id, data, {new: true}).populate("documents");
 
 
   res.status(200).json({
