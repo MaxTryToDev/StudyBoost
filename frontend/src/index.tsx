@@ -4,12 +4,8 @@ import { RouterProvider } from 'react-router-dom';
 import router from './app/router';
 import ReactDOM from "react-dom/client";
 import reportWebVitals from 'src/reportWebVitals';
-<<<<<<< Updated upstream
 import {AppContextProvider} from "./app/contexts/AppContext";
 import {Toast} from "./ui/Toast/Toast"
-=======
-import {AppContextProvider} from "@/src/app/contexts/AppContext";
->>>>>>> Stashed changes
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement
@@ -24,10 +20,7 @@ root.render(
 	<React.StrictMode>
 		<AppContextProvider>
 			<RouterProvider router={router} />
-<<<<<<< Updated upstream
 			<Toast/>
-=======
->>>>>>> Stashed changes
 		</AppContextProvider>
 	</React.StrictMode>
 );

@@ -12,7 +12,6 @@ export const registerUser = catchAsync(async (req: Request, res: Response) => {
 	const user = await usersModel.findOne({ email });
 
 	// S'il existe renvoyer une erreur
-	//console.log(user)
 	if (user) {
 		res.status(400).json({
 			status: "error",
@@ -23,13 +22,11 @@ export const registerUser = catchAsync(async (req: Request, res: Response) => {
 
 	// Hasher le mot de passe avant de le stocker
 	const hashedPassword = await bcrypt.hash(password, 10);
-	console.log(hashedPassword, email);
 	// Créer l'utilisateur et renvoyer OK
 	const userCreated = await usersModel.create({
 		email: email,
 		password: hashedPassword,
 	});
-	console.log("user created :" + userCreated);
 	res.status(200).json({
 		status: "success",
 		data: {

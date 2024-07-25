@@ -33,7 +33,6 @@ export function Register() {
             },
             body: JSON.stringify(values)
         });
-        console.log(response)
         const data = await response.json();
     }
 
