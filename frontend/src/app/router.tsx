@@ -10,9 +10,9 @@ import { Register } from "./pages/register";
 import Layout from "./pages/layout";
 import {FlashcardsGroup} from "src/app/pages/flashcards/flashcardGroup";
 import * as http from "./api";
-import {FlashcardPresentation} from "src/app/pages/flashcards/:id/page";
+import {FlashcardPresentation} from "src/app/pages/flashcards/id/page";
 import {FlashcardPlayer} from "src/app/pages/flashcards/play/page";
-import {Course} from "src/app/pages/courses/:id/page";
+import {Course} from "src/app/pages/courses/id/page";
 
 const router = createBrowserRouter([
 	{
@@ -83,24 +83,24 @@ const router = createBrowserRouter([
 				},
 				element: <FlashcardsGroup />,
 			},
-
-			{
-				path: "parameters",
-				element: <Parameters />,
-			},
-			{
-				path: "logout",
-				element: <Logout />,
-			},
-			{
-				path: "login",
-				element: <Login />,
-			},
-			{
-				path: "register",
-				element: <Register />,
-			},
 		],
+	},
+
+	{
+		path: "parameters",
+		element: <Parameters />,
+	},
+	{
+		path: "logout",
+		element: <Logout />,
+	},
+	{
+		path: "login",
+		element: <Login />,
+	},
+	{
+		path: "register",
+		element: <Register />,
 	},
 ]);
 
