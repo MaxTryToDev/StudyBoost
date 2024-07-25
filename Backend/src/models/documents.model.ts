@@ -17,7 +17,6 @@ const schema = new mongoose.Schema({
   usersId: [
     {
       type: [String],
-      require: true,
     },
   ],
 
@@ -27,4 +26,4 @@ const schema = new mongoose.Schema({
   },
 });
 
-export default new mongoose.Model("Document", schema);
+export default  mongoose.model("Document", schema);

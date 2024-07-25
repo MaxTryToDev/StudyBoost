@@ -49,7 +49,8 @@ export const updateFolder = catchAsync(async (req: Request, res: Response ) => {
   const data = req.body;
   const {id} = req.params;
 
-  const folder = await FoldersModel.findOneAndUpdate({id: id}, data, {new: true});
+  const folder = await FoldersModel.findOneAndUpdate({id: id}, data, {new: true}).populate("Document");
+
 
   res.status(200).json({
     status: 'success',

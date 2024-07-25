@@ -24,13 +24,27 @@ export const get = async (url: string) => {
   }
 
 };
-export const post = async <T>(url: string, data: T) => {
+export const post = async <T>(url: string, data: T, header?: any) => {
   const newUrl = getUrl(url);
   try {
     const response = await fetch(newUrl, {
       method: "POST", body: JSON.stringify(data), headers: {
         "Content-Type": "application/json"
       }
+    })
+    return await response.json();
+
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const postFile = async <T>(url: string, data: T) => {
+  const newUrl = getUrl(url);
+
+  try {
+    const response = await fetch(newUrl, {
+      method: "POST", body: data as any,
     })
     return await response.json();
 

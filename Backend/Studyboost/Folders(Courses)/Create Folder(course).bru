@@ -5,7 +5,14 @@ meta {
 }
 
 post {
-  url: 
-  body: none
+  url: http://localhost:3000/v1/folders
+  body: json
   auth: none
+}
+
+body:json {
+  {
+    "title": "Algo",
+    "slug": "algo"
+  }
 }

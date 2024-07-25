@@ -6,7 +6,9 @@ import { FormBlock } from 'src/ui/FormBlock';
 import { Label } from 'src/ui/Label';
 import { Stack } from 'src/ui/layouts/Stack/Stack';
 import Button from 'src/ui/Button';
-import { Link } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
+import {useContext} from "react";
+import {AuthContext} from "src/app/contexts/auth-context";
 
 export const registerSchema = z.object({
     email: z.string().email(),
@@ -24,7 +26,12 @@ export function Register() {
         resolver: zodResolver(registerSchema),
       });
 
+    const navigate = useNavigate();
+    const {setAuthData} = useContext(AuthContext)
+
     async function registerUser(values : RegisterData) {
+
+
         const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/v1/users/register`,
         {
             method: "POST",
@@ -34,6 +41,8 @@ export function Register() {
             body: JSON.stringify(values)
         });
         const data = await response.json();
+        setAuthData(data)
+        navigate("/")
     }
 
     return(

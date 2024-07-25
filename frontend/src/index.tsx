@@ -6,6 +6,7 @@ import ReactDOM from "react-dom/client";
 import reportWebVitals from 'src/reportWebVitals';
 import {AppContextProvider} from "./app/contexts/AppContext";
 import {Toast} from "./ui/Toast/Toast"
+import AuthProvider from "src/app/contexts/auth-context";
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement
@@ -19,8 +20,10 @@ function App() {
 root.render(
 	<React.StrictMode>
 		<AppContextProvider>
-			<RouterProvider router={router} />
-			<Toast/>
+			<AuthProvider>
+				<RouterProvider router={router} />
+				<Toast/>
+			</AuthProvider>
 		</AppContextProvider>
 	</React.StrictMode>
 );

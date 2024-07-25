@@ -5,9 +5,11 @@ import morgan from "morgan";
 import flashcardsRoute from "./routes/falshcardsRoute";
 import foldersRoute from "./routes/foldersRoute";
 import usersRoute from "./routes/usersRoute";
+import uploadRoute from "./routes/uploadRoute";
 
 import globalErrorHandler from "./controllers/errorController";
 import AppError from "./utils/appError";
+import * as path from "node:path";
 const app = express();
 
 //Log
@@ -23,7 +25,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 //Dossier de fichier static
-app.use(express.static(`${__dirname}/../public`));
+app.use('/files', express.static(path.join(__dirname, '../files')));
 
 //routes
 app.get("/test", (req: Request, res: Response) => {
@@ -31,7 +33,7 @@ app.get("/test", (req: Request, res: Response) => {
 });
 
 app.use("/v1/flashcards", flashcardsRoute);
-app.use("/v1/documents", () => {});
+app.use("/v1/documents", uploadRoute);
 app.use("/v1/sessions", () => {});
 app.use("/v1/folders", foldersRoute);
 app.use("/v1/users", usersRoute);
