@@ -1,5 +1,5 @@
 interface Flashcard {
-  _id?: string
+  _id: string
   name: string,
   answer: string,
   question: string,
@@ -9,16 +9,6 @@ interface Flashcard {
 }
 
 interface FlashcardGroup {
-  _id?: string
+  _id: string
   name: string
-  flashcards?: Flashcard[]
-}
-
-
-interface Course {
-  _id?: string
-  title: string
-  slug?: string
-  documents?: any[]
-  folders?: any[]
 }
